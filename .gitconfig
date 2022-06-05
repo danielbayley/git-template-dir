@@ -1,0 +1,24 @@
+#[include] TODO
+  #path = ../.gitconfig #../git/config
+
+# macOS
+[filter "plutil"]
+  clean  = plutil -convert json -r -o - -
+  smudge = plutil -convert xml1    -o - -
+  required = true
+
+# node/npm
+[filter "json-yaml"] # https://yaml.org
+  clean  = json-yaml.rb #ruby -r json -r yaml -e 'puts JSON.parse(ARGF.read).to_yaml.lines.drop 1'
+  smudge = yaml-json.rb #ruby -r yaml -r json -e "puts JSON.pretty_generate YAML.load(ARGF.read), indent: ' ' * ${TODO:-2}"
+  required = true
+
+[filter "js-coffee"] # http://js2.coffee
+  clean  = npx --yes --silent --no-update-notifier js2coffee #--indent $TODO
+  smudge = npx --yes --silent --no-update-notifier
+  require = true
+
+[filter "svgo"] # https://github.com/svg/svgo
+  clean  = npx --yes --silent --no-update-notifier svgo --input - --pretty --output - --quiet #--indent 2 #--final-newline
+  #smudge = TODO?
+  require = true

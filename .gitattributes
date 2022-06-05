@@ -1,0 +1,46 @@
+[attr]
+  binary filter=lfs diff=lfs merge=lfs -text #lfs
+
+* text=auto
+#* text eol=lf
+
+# Git LFS https://git-lfs.github.com
+# Images
+*.png                 binary #lfs
+*.jp*g                binary
+*.tiff                binary
+*.raw                 binary
+*.[Hh][Ee][Ii][CcFf]  binary #sips-png TODO
+*.gif                 binary
+#*.svg                 svgo #rsvg-convert #svg-yaml TODO?
+
+# Audio
+*.wav                 binary
+*.aif*                binary
+*.mp*[43]             binary #*.m[p4]?
+*.m4a
+# Video
+*.mov                 binary
+*.[Hh][Ee][Vv][Cc]    binary
+*.mkv                 binary
+*.webm                binary
+*.avi                 binary
+
+# Design
+*.psd{,t}             binary
+*.ai{,t}              binary
+*.ind[dt]             binary
+*.aep                 binary
+*.prproj              binary
+
+# Documents
+*.pdf                 binary
+*.doc*                binary
+
+# macOS
+*.plist               text    filter=plutil     linguist-language=YAML
+#info.y*ml             text    filter=plutil
+
+# node/npm
+*.json                text    filter=json-yaml
+*.js                  text    filter=js-coffee
